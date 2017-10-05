@@ -5,9 +5,16 @@
       'pkg': 'yum',
       'extra_pkgs': [ 'yum-utils' ],
     },
-  }, grain='os_family', merge=salt['pillar.get']('yum:lookup')) %}
+  }, grain='os', merge=salt['pillar.get']('yum:lookup')) %}
 
-{% do default_settings.yum.update(os_family_map) %}
+{% set os_map = salt['grains.filter_by']({
+    'Fedora': {
+      'pkg': 'dnf',
+      'extra_pkgs': [ 'dnf-utils', 'dnf-yum', 'dnf-plugins-core' ],
+    },
+  }, grain='os', merge=os_family_map) %}
+
+{% do default_settings.yum.update(os_map) %}
 
 {% set yum_settings = salt['pillar.get'](
     'yum',
