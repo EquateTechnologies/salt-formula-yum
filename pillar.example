@@ -72,10 +72,30 @@ yum:
       example_repo:
     managed:
       ossec:
-        protect: 0
+        name: 'ossec - $basearch'
         mirrorlist: http://updates.atomicorp.com/channels/mirrorlist/atomic/centos-$releasever-$basearch
-        name: ossec
         gpgcheck: 1
         gpgkey: https://www.atomicorp.com/RPM-GPG-KEY.art.txt https://www.atomicorp.com/RPM-GPG-KEY.atomicorp.txt
         enabled: 1
         includepkgs: ossec*
+      google-chrome:
+        name: 'google-chrome - $basearch'
+        baseurl: 'http://dl.google.com/linux/chrome/rpm/stable/$basearch'
+        enabled: 1
+        gpgcheck: 1
+        gpgkey: https://dl-ssl.google.com/linux/linux_signing_key.pub
+        includepkgs: google-chrome*
+      brave:
+        name: 'brave - $basearch'
+        baseurl: https://s3-us-west-2.amazonaws.com/brave-rpm-release/$basearch/
+        gpgkey: https://s3-us-west-2.amazonaws.com/brave-rpm-release/keys.asc
+        gpgcheck: 1
+        enabled: 1
+        includepkgs: brave*
+      slack:
+        name: 'slacktechnologies_slack - $basearch'
+        baseurl: https://packagecloud.io/slacktechnologies/slack/fedora/26/$basearch
+        gpgcheck: 1
+        enabled: 1
+        gpgkey: https://packagecloud.io/slacktechnologies/slack/gpgkey
+        includepkgs: slack*
