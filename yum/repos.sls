@@ -9,7 +9,7 @@ repo-absent-{{ repo_name }}:
 {% else %}
   pkgrepo.absent:
 {% for name, value in values.items() %}
-    {{ name }}: {{ value }}
+    - {{ name }}: {{ value }}
 {% endfor %}
 {% endif %}
 {% endfor %}
@@ -21,7 +21,7 @@ repo-absent-{{ repo_name }}:
 repo-managed-{{ repo_name }}:
   pkgrepo.managed:
 {% for name, value in values.items() %}
-    {{ name }}: {{ value }}
+    - {{ name }}: {{ value }}
 {% endfor %}
 {% endif %}
 {% endfor %}
