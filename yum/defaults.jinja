@@ -1,0 +1,65 @@
+yum:
+  lookup:
+    pkg: yum
+    extra_pkgs:
+      - yum-utils
+  manage_yum_conf: True
+  yum_conf:
+    main:
+      cachedir: /var/cache/yum/$basearch/$releasever
+      keepcache: 0
+      debuglevel: 2
+      logfile: /var/log/yum.log
+      exactarch: 1
+      obsoletes: 1
+      gpgcheck: 1
+      plugins: 1
+      installonly_limit: 5
+      bugtracker_url: http://bugs.centos.org/set_project.php?project_id=23&ref=http://bugs.centos.org/bug_report_page.php?category=yum
+      distroverpkg: centos-release
+  updateonboot:
+    REBOOT_RPMS="kernel kernel-smp"
+    OPTIONS="-q"
+  cron:
+    daily:
+      commands:
+        update_cmd: default
+        update_messages: yes
+        download_updates: yes
+        apply_updates: no
+        random_sleep: 360
+      emitters:
+        system_name: None
+        emit_via: stdio
+        output_width: 80
+      email:
+        email_from: root@localhost
+        email_to: root
+        email_host: localhost
+      groups:
+        group_list: None
+        group_package_types: mandatory, default
+      base:
+        debuglevel: -2
+        mdpolicy: group:main
+    hourly:
+      commands:
+        update_cmd: default
+        update_messages: no
+        download_updates: no
+        apply_updates: no
+        random_sleep: 15
+      emitters:
+        system_name: None
+        emit_via: stdio
+        output_width: 80
+      email:
+        email_from: root@localhost
+        email_to: root
+        email_host: localhost
+      groups:
+        group_list: None
+        group_package_types: mandatory, default
+      base:
+        debuglevel: -2
+        mdpolicy: group:main

@@ -1,0 +1,4 @@
+# WARNING: This file is managed by Salt Stack
+{% for name, value in yum_settings.get('updateonboot', {}).items() %}
+{{ name }}={{ value }}
+{% endfor %}
