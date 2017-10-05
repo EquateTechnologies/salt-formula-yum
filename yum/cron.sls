@@ -13,7 +13,7 @@ yum-cron:
     group: root
     mode: 0644
     context:
-      yum_cron_settings {{ yum_settings.cron.daily }}
+      yum_cron_settings: {{ yum_settings.cron.daily }}
 {% endif %}
 
 {% if 'hourly' in yum_settings.cron %}
@@ -25,6 +25,6 @@ yum-cron:
     group: root
     mode: 0644
     context:
-      yum_cron_settings {{ yum_settings.cron.hourly }}
+      yum_cron_settings: {{ yum_settings.cron.hourly }}
 {% endif %}
 {% endif %}

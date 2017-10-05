@@ -12,5 +12,5 @@ yum-updateonboot:
     group: root
     mode: 0644
     context:
-      yum_settings {{ yum_settings }}
+      yum_settings: {{ yum_settings }}
 {% endif %}
