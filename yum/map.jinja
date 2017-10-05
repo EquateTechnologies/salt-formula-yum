@@ -1,3 +1,5 @@
+{% import_yaml 'yum/defaults.yaml' as default_settings %}
+
 {% set os_family_map = salt['grains.filter_by']({
     'RedHat': {
       'pkg': 'yum',
@@ -5,9 +7,11 @@
     },
   }, grain='os_family', merge=salt['pillar.get']('yum:lookup')) %}
 
+{% do default_settings.yum.update(os_family_map) %}
+
 {% set yum_settings = salt['pillar.get'](
     'yum',
-    default=os_family_map,
+    default=default_settings.yum,
     merge=True
   )
 %}
