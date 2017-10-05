@@ -11,11 +11,11 @@
 {% if yum_settings.get('manage_yum_conf', False) == True %}
 /etc/yum.conf:
   file.managed:
-    source: salt://yum/files/yum.conf
-    template: jinja
-    user: root
-    group: root
-    mode: 0644
-    context:
+    - source: salt://yum/files/yum.conf
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 0644
+    - context:
       yum_settings: {{ yum_settings }}
 {% endif %}
